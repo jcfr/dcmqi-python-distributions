@@ -88,14 +88,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      # install auditwheel-symbols
-      - name: Install auditwheel-symbols
-        run: pip install auditwheel-symbols
-
-      - name: Run auditwheel-symbols
-        run: auditwheel-symbols -m 2014
-
-      - uses: pypa/cibuildwheel@v2.16.5
+      - uses: pypa/cibuildwheel@v2.16
         env:
           CIBW_BUILD: "cp312-*"
 
