@@ -94,6 +94,10 @@ jobs:
       - name: test auditwheel symbols
         run: auditwheel-symbols --help
 
+      - name: Install libpthread.so.0 for musllinux
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y libc6-dev
+
       - uses: pypa/cibuildwheel@v2.17
         env:
           CIBW_ARCHS_LINUX: "x86_64"
