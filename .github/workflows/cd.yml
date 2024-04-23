@@ -94,7 +94,7 @@ jobs:
       - name: test auditwheel symbols
         run: auditwheel-symbols --help
 
-      - uses: pypa/cibuildwheel@v2.16.5
+      - uses: pypa/cibuildwheel@v2.17
         env:
           CIBW_ARCHS_LINUX: "x86_64"
           CIBW_BUILD: "cp312-*"
