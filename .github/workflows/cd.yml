@@ -94,9 +94,10 @@ jobs:
       - name: test auditwheel symbols
         run: auditwheel-symbols --help
 
-      - name: Install libpthread.so.0 for musllinux
+      # Add step to install libpthread.so.0 and libnsl.so.1 for musllinux
+      - name: Install libpthread.so.0 and libnsl.so.1 for musllinux
         if: matrix.os == 'ubuntu-latest'
-        run: sudo apt-get update && sudo apt-get install -y libc6-dev
+        run: sudo apt-get update && sudo apt-get install -y libc6-dev libnsl-dev
 
       - uses: pypa/cibuildwheel@v2.17
         env:
