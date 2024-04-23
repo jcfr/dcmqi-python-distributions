@@ -88,9 +88,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pypa/cibuildwheel@v2.16
+      - name: Install auditwheel-symbols
+        run: pip install auditwheel-symbols
+
+      - uses: pypa/cibuildwheel@v2.16.5
         env:
           CIBW_BUILD: "cp312-*"
+          CIBW_REPAIR_WHEEL_COMMAND: "auditwheel-symbols {wheel} -m 2014 && auditwheel repair -w {dest_dir} {wheel}"
 
       - name: Upload wheels
         uses: actions/upload-artifact@v4
